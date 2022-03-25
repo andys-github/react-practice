@@ -1,22 +1,17 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const monsters = [
-    {
-      name: "Frank"
-    },
-    {
-      name: "Linda"
-    },
-    {
-      name: "Jackie"
-    },
-    {
-      name: "Andrei"
-    }
-  ]
+  const [monsters, setMonsters] = useState([])
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(users => {
+      setMonsters(users)
+    })
+  }, [])
+  
 
   return (
     <div className="App">
